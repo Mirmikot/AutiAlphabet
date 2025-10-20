@@ -1,11 +1,10 @@
-name: Android CI/CD (Disabled)
+name: Android Build (Simple)
 
 on:
-  # Temporarily disabled due to GitHub cache issues
-  # push:
-  #   branches: [ main, master ]
-  # pull_request:
-  #   branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
@@ -21,17 +20,6 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        
-    # Cache temporarily disabled due to GitHub services issues
-    # - name: Cache Gradle packages
-    #   uses: actions/cache@v4
-    #   with:
-    #     path: |
-    #       ~/.gradle/caches
-    #       ~/.gradle/wrapper
-    #     key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-    #     restore-keys: |
-    #       ${{ runner.os }}-gradle-
           
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
@@ -41,15 +29,12 @@ jobs:
         chmod +x setup-gradle.sh
         ./setup-gradle.sh
       
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug --no-daemon --no-build-cache
+    - name: Build APK
+      run: |
+        ./gradlew assembleDebug --no-daemon --no-build-cache --no-parallel
+        ./gradlew assembleRelease --no-daemon --no-build-cache --no-parallel
       env:
-        GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.caching=false"
-      
-    - name: Build Release APK
-      run: ./gradlew assembleRelease --no-daemon --no-build-cache
-      env:
-        GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.caching=false"
+        GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.caching=false -Dorg.gradle.parallel=false"
       
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
