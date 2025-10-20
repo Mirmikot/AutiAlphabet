@@ -19,6 +19,7 @@ build/
 # Gradle files
 .gradle/
 gradle-app.setting
+gradle/wrapper/gradle-wrapper.jar
 
 # Local configuration file (sdk path, etc)
 local.properties
