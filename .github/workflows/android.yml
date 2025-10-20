@@ -1,10 +1,11 @@
-name: Android CI/CD
+name: Android CI/CD (DISABLED)
 
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  # Disabled - using android-simple.yml instead
+  # push:
+  #   branches: [ main, master ]
+  # pull_request:
+  #   branches: [ main, master ]
   workflow_dispatch:
 
 jobs:

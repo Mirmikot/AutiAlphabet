@@ -32,10 +32,13 @@ jobs:
     - name: Verify Gradle version
       run: ./gradlew --version
       
-    - name: Build APK
-      run: |
-        ./gradlew assembleDebug --no-daemon --no-build-cache --no-parallel
-        ./gradlew assembleRelease --no-daemon --no-build-cache --no-parallel
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug --no-daemon --no-build-cache --no-parallel
+      env:
+        GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.caching=false -Dorg.gradle.parallel=false"
+        
+    - name: Build Release APK
+      run: ./gradlew assembleRelease --no-daemon --no-build-cache --no-parallel
       env:
         GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.caching=false -Dorg.gradle.parallel=false"
       
