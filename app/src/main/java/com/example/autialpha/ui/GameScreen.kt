@@ -39,12 +39,13 @@ import com.example.autialpha.data.ItemsRepository
 
 @Composable
 fun GameScreen(onSpeak: (String) -> Unit) {
+    val context = LocalContext.current
     val repo = remember { ItemsRepository() }
     var items by remember { mutableStateOf(listOf<Item>()) }
     var index by remember { mutableStateOf(0) }
 
     LaunchedEffect(Unit) {
-        items = repo.loadItems(context = androidx.compose.ui.platform.LocalContext.current)
+        items = repo.loadItems(context = context)
     }
 
     if (items.isEmpty()) {
