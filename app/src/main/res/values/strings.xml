@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AutiAlpha</string>
+    <string name="speak">Озвучить</string>
+    <string name="next">Дальше</string>
+    <string name="clear">Стереть</string>
+</resources>
+
+
