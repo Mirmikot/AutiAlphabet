@@ -28,6 +28,9 @@ jobs:
       run: |
         chmod +x setup-gradle.sh
         ./setup-gradle.sh
+        
+    - name: Verify Gradle version
+      run: ./gradlew --version
       
     - name: Build APK
       run: |

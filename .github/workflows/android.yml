@@ -1,11 +1,10 @@
-name: Android CI/CD (Disabled)
+name: Android CI/CD
 
 on:
-  # Temporarily disabled due to GitHub cache issues
-  # push:
-  #   branches: [ main, master ]
-  # pull_request:
-  #   branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
